@@ -1,23 +1,20 @@
 var express = require('express');
 var router = express.Router();
+var Assignments = require('../models/assignments');
 
-var assignments = [{
-  number: "1",
-  name: "Brendan",
-  score: 100,
-  date: "Dec 1st"
-},
-  {
-    number: "2",
-    name: "Allan",
-    score: 100,
-    date: "Dec 2nd"
-  }
-];
+
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { assignments: assignments});
+
+  Assignments.find({}, function(err, assignments) {
+    if (err) {
+      console.log(err);
+      next(err);
+    } else {
+      res.render('index', { assignments: assignments});
+    }
+  });
 });
 
 module.exports = router;

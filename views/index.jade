@@ -1,10 +1,12 @@
 extends layout
 
 block content
-  h1= title
-  each assignment in assignments
-    p
-      li= assignment.number
-      li= assignment.name
-      li= assignment.score
-      li= assignment.date
+  h1 Assignment List:
+  #assignments
+    each val in assignments
+        ul
+          li= val.assignment_name
+          li= val.student_name
+          li= val.score
+          li= val.date_completed
+

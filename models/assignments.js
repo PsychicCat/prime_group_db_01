@@ -8,6 +8,11 @@ var assignmentSchema = new schema({
     date_completed: { type: Date, required: true }
 });
 
+assignmentSchema.methods.dateformat = function(){
+    this.date_completed = this.date_completed.toLocaleString();
+    return this.date_completed
+};
+
 var Assignment = mongoose.model('Assignment', assignmentSchema);
 
 module.exports = Assignment;
