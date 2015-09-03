@@ -1,5 +1,20 @@
 $(document).ready(function(){
 
+    $('body').on('click', '.remove', function(){
+       var id = $(this).data('id');
+        console.log(id);
+        $.ajax({
+            url: '/assignments/' + id ,
+            type: 'DELETE'
+        }).done(function(response, textStatus, jqXHR){
+            console.log('Added assignment!');
+        }).fail(function( jqXHR, textStatus, errorThrown ) {
+            console.log(jqXHR, textStatus, errorThrown);
+        }).always(function(){
+            getAssignments();
+        });
+    });
+
     $('form').on('submit', function(e){
         e.preventDefault();
         var assignmentName = $(this).serializeArray()[0];
@@ -43,15 +58,13 @@ function getAssignments(){
 }).done(function(data, textStatus, jqXHR) {
         var $assignments = $('ul').length;
 
-        if (data.length > $assignments){
+        if (data.length !== $assignments){
             $('#assignments').empty();
             data.forEach(function(elem){
                 var $ul = $('<ul>');
-                var $li1 = $('<li>').text(elem.assignment_name);
-                var $li2 = $('<li>').text(elem.student_name);
-                var $li3 = $('<li>').text(elem.score);
-                var $li4 = $('<li>').text(elem.date_completed.toLocaleString());
-                $ul.append($li1, $li2, $li3, $li4);
+                var $li1 = $('<li>').text("Assignment: " + elem.assignment_name + ", Student: " + elem.student_name + ", Score: " + elem.score + ", Date Completed: " + elem.date_completed);
+                var $remove = $('<button>').attr({"class": "remove", "data-id": elem._id }).text("Remove");
+                $ul.append($li1, $remove);
                 $('#assignments').append($ul);
 
             })

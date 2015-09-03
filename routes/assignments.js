@@ -40,4 +40,15 @@ router.post('/', function(req, res, next) {
   res.send(JSON.stringify(assignment));
 });
 
+router.delete('/:id', function(req, res, next){
+  Assignments.findByIdAndRemove(req.params.id, function(err, assignment){
+    if(err){
+      console.log(err);
+      next(err);
+    } else {
+      res.send(200);
+    }
+  })
+});
+
 module.exports = router;

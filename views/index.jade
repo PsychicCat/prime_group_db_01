@@ -18,8 +18,7 @@ block content
   #assignments
     each val in assignments
         ul
-          li= val.assignment_name
-          li= val.student_name
-          li= val.score
-          li= val.date_completed
+          li= "Assignment: " + val.assignment_name + ", Student: " + val.student_name + ", Score: " + val.score + ", Date Completed: " + val.date_completed
+          button(class="remove" data-id=val.id) Remove
+
 
