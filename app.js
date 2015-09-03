@@ -11,7 +11,7 @@ var mongoURI = "mongodb://localhost:27017/assignments";
 var MongoDB = mongoose.connect(mongoURI).connection;
 
 var routes = require('./routes/index');
-var users = require('./routes/users');
+var assignments = require('./routes/assignments');
 
 var app = express();
 
@@ -28,7 +28,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
-app.use('/users', users);
+app.use('/assignments', assignments);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
