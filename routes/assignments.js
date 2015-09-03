@@ -3,15 +3,27 @@ var router = express.Router();
 var Assignments = require('../models/assignments');
 
 /* GET users listing. */
-router.get('/', function(req, res, next) {
-  Assignments.find({}, function(err, assignments){
-    if(err){
-      console.log(err);
-      next(err);
-    } else {
-      res.json(assignments);
-    }
-  })
+router.get('/:id?', function(req, res, next) {
+  if(req.params.id){
+    Assignments.findById(req.params.id,function(err, assignment){
+      if(err){
+        console.log(err);
+        next(err);
+      } else {
+        res.json(assignment);
+      }
+    })
+  } else {
+    Assignments.find({}, function(err, assignments){
+      if(err){
+        console.log(err);
+        next(err);
+      } else {
+        res.json(assignments);
+      }
+    })
+  }
+
 });
 
 
