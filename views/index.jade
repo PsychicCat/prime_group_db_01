@@ -2,6 +2,19 @@ extends layout
 
 block content
   h1 Assignment List:
+  form(method="POST")
+    fieldset
+      legend Add New Assignment:
+      label(for="assignmentName") Assignment Name:
+      input(type="text" name="assignmentName" id="assignmentName")
+      label(for="studentName") Student Name:
+      input(type="text" name="studentName" id="studentName")
+      label(for="score") Score:
+      input(type="number" name="score" id="score")
+      label(for="date") Date Completed:
+      input(type="date" name="date" id="date")
+      input(type="submit" value="submit")
+
   #assignments
     each val in assignments
         ul

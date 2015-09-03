@@ -1,4 +1,35 @@
 $(document).ready(function(){
+
+    $('form').on('submit', function(e){
+        e.preventDefault();
+        var assignmentName = $(this).serializeArray()[0];
+        var studentName = $(this).serializeArray()[1];
+        var score = $(this).serializeArray()[2];
+        var date = $(this).serializeArray()[3];
+
+        var data = {
+            assignment_name: assignmentName.value,
+            student_name: studentName.value,
+            score: score.value,
+            date_completed: date.value,
+        };
+
+        console.log(data);
+
+        $.ajax({
+            url: '/assignments',
+            type: 'POST',
+            data: data,
+        }).done(function(response, textStatus, jqXHR){
+            console.log('Added assignment!');
+        }).fail(function( jqXHR, textStatus, errorThrown ) {
+            console.log(jqXHR, textStatus, errorThrown);
+        }).always(function(){
+            getAssignments();
+        });
+
+    });
+
     setInterval(function(){getAssignments();}, 5000);
 });
 
@@ -13,7 +44,6 @@ function getAssignments(){
         var $assignments = $('ul').length;
 
         if (data.length > $assignments){
-            console.log("Refreshing...");
             $('#assignments').empty();
             data.forEach(function(elem){
                 var $ul = $('<ul>');
