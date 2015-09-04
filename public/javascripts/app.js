@@ -1,7 +1,7 @@
 $(document).ready(function(){
-    var counter = 0;
 
     $('body').on('click', '.remove', function(){
+
        var id = $(this).data('id');
         $.ajax({
             url: '/assignments/' + id ,
@@ -21,6 +21,7 @@ $(document).ready(function(){
 
     $('body').on('submit', '#superUpdate', function(e){
         e.preventDefault();
+        console.log($(this));
         console.log("UPDATING");
         var id = $(this).data('id');
         console.log(id);
@@ -102,7 +103,7 @@ function getAssignments(updated){
                 var $li1 = $('<li>').text("Assignment: " + elem.assignment_name + ", Student: " + elem.student_name + ", Score: " + elem.score + ", Date Completed: " + moment(elem.date_completed).format('MMM Do YYYY'));
                 var $remove = $('<button>').attr({"class": "remove", "data-id": elem._id }).text("Remove");
                 var $update = $('<button>').attr('class', 'update').text("Update");
-                var $updateForm = $('<form>').attr({'data-id': elem._id, 'id':'superUpdate', 'class': 'hidden updateform', 'method': 'PUT'});
+                var $updateForm = $('<form>').attr({'data-id': elem._id, 'id':'superUpdate', 'class': 'hidden updateform animated slideInDown', 'method': 'PUT'});
                 var $fieldset = $('<fieldset>');
                 var $legend = $('<legend>').text("Update Assignment");
                 var $label1 = $('<label>').attr('for', 'upassignmentName').text('Assignment Name: ');

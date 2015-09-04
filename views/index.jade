@@ -17,11 +17,11 @@ block content
 
   #assignments
     each val in assignments
-        ul
+        ul(class="animated rollIn")
           li= "Assignment: " + val.assignment_name + ", Student: " + val.student_name + ", Score: " + val.score + ", Date Completed: " + moment(val.date_completed).format('MMM Do YYYY')
           button(class="remove" data-id=val.id) Remove
           button(class="update") Update
-          form(method="PUT" data-id=val.id class="hidden updateform" id="superUpdate")
+          form(method="PUT" data-id=val.id class="hidden updateform animated slideInDown" id="superUpdate")
             fieldset
               legend Update Assignment:
               label(for="upassignmentName" id="upassignmentName") Assignment Name:
