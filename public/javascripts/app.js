@@ -2,7 +2,6 @@ $(document).ready(function(){
 
     $('body').on('click', '.remove', function(){
        var id = $(this).data('id');
-        console.log(id);
         $.ajax({
             url: '/assignments/' + id ,
             type: 'DELETE'
@@ -62,7 +61,7 @@ function getAssignments(){
             $('#assignments').empty();
             data.forEach(function(elem){
                 var $ul = $('<ul>');
-                var $li1 = $('<li>').text("Assignment: " + elem.assignment_name + ", Student: " + elem.student_name + ", Score: " + elem.score + ", Date Completed: " + elem.date_completed);
+                var $li1 = $('<li>').text("Assignment: " + elem.assignment_name + ", Student: " + elem.student_name + ", Score: " + elem.score + ", Date Completed: " + moment(elem.date_completed).format('MMM Do YYYY'));
                 var $remove = $('<button>').attr({"class": "remove", "data-id": elem._id }).text("Remove");
                 $ul.append($li1, $remove);
                 $('#assignments').append($ul);

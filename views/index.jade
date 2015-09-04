@@ -10,7 +10,7 @@ block content
       label(for="studentName") Student Name:
       input(type="text" name="studentName" id="studentName")
       label(for="score") Score:
-      input(type="number" name="score" id="score")
+      input(type="number" name="score" min="1" max="100" id="score")
       label(for="date") Date Completed:
       input(type="date" name="date" id="date")
       input(type="submit" value="submit")
@@ -18,7 +18,7 @@ block content
   #assignments
     each val in assignments
         ul
-          li= "Assignment: " + val.assignment_name + ", Student: " + val.student_name + ", Score: " + val.score + ", Date Completed: " + val.date_completed
+          li= "Assignment: " + val.assignment_name + ", Student: " + val.student_name + ", Score: " + val.score + ", Date Completed: " + moment(val.date_completed).format('MMM Do YYYY')
           button(class="remove" data-id=val.id) Remove
 
 

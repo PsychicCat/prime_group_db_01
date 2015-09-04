@@ -14,6 +14,7 @@ var routes = require('./routes/index');
 var assignments = require('./routes/assignments');
 
 var app = express();
+app.locals.moment = require('moment');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
