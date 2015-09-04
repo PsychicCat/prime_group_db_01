@@ -11,3 +11,7 @@ button {
   display: inline;
   margin: 5px;
 }
+
+.hidden {
+  display: none;
+}

@@ -46,7 +46,20 @@ router.delete('/:id', function(req, res, next){
       console.log(err);
       next(err);
     } else {
-      res.send(200);
+      res.sendStatus(200);
+    }
+  })
+});
+
+router.put('/:id', function(req,res,next){
+  console.log(req.params.id);
+  console.log(req.body);
+  Assignments.findByIdAndUpdate(req.params.id, req.body, function(err, assignment){
+    if(err){
+      console.log(err);
+      next(err);
+    } else {
+      res.sendStatus(200);
     }
   })
 });

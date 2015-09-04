@@ -2,7 +2,7 @@ extends layout
 
 block content
   h1 Assignment List:
-  form(method="POST")
+  form(method="POST" id="addForm")
     fieldset
       legend Add New Assignment:
       label(for="assignmentName") Assignment Name:
@@ -20,5 +20,19 @@ block content
         ul
           li= "Assignment: " + val.assignment_name + ", Student: " + val.student_name + ", Score: " + val.score + ", Date Completed: " + moment(val.date_completed).format('MMM Do YYYY')
           button(class="remove" data-id=val.id) Remove
+          button(class="update") Update
+          form(method="PUT" class="hidden updateform" id="superUpdate")
+            fieldset
+              legend Update Assignment:
+              label(for="upassignmentName" id="upassignmentName") Assignment Name:
+              input(type="text" name="upassignmentName" id="upassignmentName")
+              label(for="upstudentName") Student Name:
+              input(type="text" name="upstudentName" id="upstudentName")
+              label(for="upscore") Score:
+              input(type="number" name="upscore" min="1" max="100" id="upscore")
+              label(for="reupdate") Date Completed:
+              input(type="date" name="reupdate" id="reupdate")
+              input(type="submit" value="Submit" data-id=val.id)
+
 
 
