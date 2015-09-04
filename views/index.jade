@@ -21,7 +21,7 @@ block content
           li= "Assignment: " + val.assignment_name + ", Student: " + val.student_name + ", Score: " + val.score + ", Date Completed: " + moment(val.date_completed).format('MMM Do YYYY')
           button(class="remove" data-id=val.id) Remove
           button(class="update") Update
-          form(method="PUT" class="hidden updateform" id="superUpdate")
+          form(method="PUT" data-id=val.id class="hidden updateform" id="superUpdate")
             fieldset
               legend Update Assignment:
               label(for="upassignmentName" id="upassignmentName") Assignment Name:
@@ -32,7 +32,7 @@ block content
               input(type="number" name="upscore" min="1" max="100" id="upscore")
               label(for="reupdate") Date Completed:
               input(type="date" name="reupdate" id="reupdate")
-              input(type="submit" value="Submit" data-id=val.id)
+              input(type="submit" value="Submit")
 
 
 
